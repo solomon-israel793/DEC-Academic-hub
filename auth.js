@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
-const User = require('.User');
+const User = require('./User');
 
 // Verifies the JWT sent in the Authorization header and attaches req.user.
 // This is what guarantees "no one can access another user's records" -
