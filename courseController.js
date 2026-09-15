@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Course = require('.Course');
+const Course = require('./Course');
 
 // @route GET /api/courses  (any logged-in user)
 const getCourses = asyncHandler(async (req, res) => {
