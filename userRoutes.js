@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('.auth');
-const { getMe, updateMe, changeMyPassword } = require('.userController');
+const { protect } = require('./auth');
+const { getMe, updateMe, changeMyPassword } = require('./userController');
 
 router.use(protect);
 
