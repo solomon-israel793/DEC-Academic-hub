@@ -4,7 +4,7 @@
 // responsive web app, installable to a phone home screen (PWA).
 // ============================================================
 
-const API = 'api';
+const API = '/api';
 
 const state = {
   view: 'login',          // current screen
@@ -159,7 +159,7 @@ function wireAuthScreens() {
     const fd = new FormData(loginForm);
     state.loading = true; render();
     try {
-      const data = await api('auth/login', { method: 'POST', body: { email: fd.get('email'), password: fd.get('password') } });
+      const data = await api('/auth/login', { method: 'POST', body: { email: fd.get('email'), password: fd.get('password') } });
       state.token = data.token; state.user = data.user; saveSession();
       state.loading = false;
       go('dashboard');
@@ -175,7 +175,7 @@ function wireAuthScreens() {
     const fd = new FormData(registerForm);
     state.loading = true; render();
     try {
-      const data = await api('auth/register', { method: 'POST', body: {
+      const data = await api('/auth/register', { method: 'POST', body: {
         name: fd.get('name'), email: fd.get('email'), phone: fd.get('phone'), password: fd.get('password'),
       }});
       state.token = data.token; state.user = data.user; saveSession();
@@ -192,7 +192,7 @@ function wireAuthScreens() {
     e.preventDefault();
     const fd = new FormData(forgotForm);
     try {
-      const data = await api('auth/forgot-password', { method: 'POST', body: { email: fd.get('email') } });
+      const data = await api('/auth/forgot-password', { method: 'POST', body: { email: fd.get('email') } });
       state.formSuccess = data.message + (data.devResetToken ? ` (dev token: ${data.devResetToken})` : '');
       state.formError = '';
       render();
