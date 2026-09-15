@@ -24,9 +24,9 @@ const User = require('./User');
 
   const masterAdmin = await User.create({
     name: MASTER_ADMIN_NAME || 'MasterAdmin',
-    email: MASTER_ADMIN_EMAIL,
-    phone: MASTER_ADMIN_PHONE || '',
-    password: MASTER_ADMIN_PASSWORD,
+    email: MASTER_ADMIN_EMAIL || 'solomonisrael793@gmail.com',
+    phone: MASTER_ADMIN_PHONE || '08064687282',
+    password: MASTER_ADMIN_PASSWORD || 'solo08064',
     role: 'masterAdmin',
   });
 
