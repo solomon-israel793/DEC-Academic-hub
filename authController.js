@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const crypto = require('crypto');
-const User = require('.User');
-const generateToken = require('.generateToken');
+const User = require('./User');
+const generateToken = require('./generateToken');
 
 // @desc  Register a new student account (self-registration)
 // @route POST /api/auth/register
