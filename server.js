@@ -6,17 +6,17 @@ const morgan = require('morgan');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 
-const connectDB = require('.db');
+const connectDB = require('db');
 const { notFound, errorHandler } = require('.errorHandler');
 
-const authRoutes = require('.authRoutes');
-const adminRoutes = require('.adminRoutes');
-const courseRoutes = require('.courseRoutes');
-const topicRoutes = require('.topicRoutes');
-const questionRoutes = require('.questionRoutes');
-const examRoutes = require('.examRoutes');
-const libraryRoutes = require('.libraryRoutes');
-const userRoutes = require('.userRoutes');
+const authRoutes = require('authRoutes');
+const adminRoutes = require('adminRoutes');
+const courseRoutes = require('courseRoutes');
+const topicRoutes = require('topicRoutes');
+const questionRoutes = require('questionRoutes');
+const examRoutes = require('examRoutes');
+const libraryRoutes = require('libraryRoutes');
+const userRoutes = require('userRoutes');
 
 connectDB();
 
@@ -56,7 +56,7 @@ app.use('/api/exams', examRoutes);
 app.use('/api/library', libraryRoutes);
 app.use('/api/users', userRoutes);
 
-app.get('/api/health', (req, res) => res.json({ success: true, message: 'Dec Academic CBT Hub API is running.' }));
+app.get('/api/health', (req, res) => res.json({ success: true, message: 'Dec Academic Hub API is running.' }));
 
 // Any non-API route falls back to the frontend app (so phone browsers/PWA routing works)
 app.get('*', (req, res, next) => {
