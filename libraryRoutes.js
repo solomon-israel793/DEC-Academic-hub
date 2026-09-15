@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { protect, authorize } = require('.auth');
-const { uploadLibraryFile } = require('.upload');
-const { uploadMaterial, getMaterials, deleteMaterial } = require('.libraryController');
+const { protect, authorize } = require('./auth');
+const { uploadLibraryFile } = require('./upload');
+const { uploadMaterial, getMaterials, deleteMaterial } = require('./libraryController');
 
 router.use(protect);
 
