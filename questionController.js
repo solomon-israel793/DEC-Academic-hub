@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Question = require('.Question');
+const Question = require('./Question');
 
 function validateQuestionPayload(q) {
   if (!q.type || !['mcq', 'subjective'].includes(q.type)) return 'type must be "mcq" or "subjective".';
