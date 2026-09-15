@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const User = require('.User');
+const User = require('./User');
 
 // @desc  Get my own profile
 // @route GET /api/users/me
