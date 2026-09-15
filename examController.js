@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler');
-const Question = require('.Question');
-const ExamResult = require('.ExamResult');
-const EXAM_MODES = require('.examModes');
-const { gradeAnswer } = require('.scoring');
+const Question = require('./Question');
+const ExamResult = require('./ExamResult');
+const EXAM_MODES = require('./examModes');
+const { gradeAnswer } = require('./scoring');
 
 // Fisher-Yates shuffle
 function shuffle(arr) {
