@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { protect, authorize } = require('.auth');
-const { getTopics, createTopic, updateTopic, deleteTopic } = require('.topicController');
+const { protect, authorize } = require('./auth');
+const { getTopics, createTopic, updateTopic, deleteTopic } = require('./topicController');
 
 router.use(protect);
 
