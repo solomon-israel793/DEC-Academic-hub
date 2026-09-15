@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { protect, authorize } = require('.auth');
-const { createAdmin, createStaff, listUsers, setUserStatus, deleteUser } = require('.adminController');
+const { protect, authorize } = require('./auth');
+const { createAdmin, createStaff, listUsers, setUserStatus, deleteUser } = require('./adminController');
 
 router.use(protect);
 
