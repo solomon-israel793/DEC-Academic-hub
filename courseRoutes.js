@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { protect, authorize } = require('.auth');
-const { getCourses, createCourse, updateCourse, deleteCourse } = require('.courseController');
+const { protect, authorize } = require('./auth');
+const { getCourses, createCourse, updateCourse, deleteCourse } = require('./courseController');
 
 router.use(protect);
 
