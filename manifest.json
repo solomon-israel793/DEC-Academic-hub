@@ -1,0 +1,10 @@
+{
+  "name": "Dec Academic Hub",
+  "short_name": "DEC Hub",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1C2541",
+  "theme_color": "#1C2541",
+  "orientation": "portrait",
+  "icons": []
+}
