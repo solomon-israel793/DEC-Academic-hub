@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const User = require('.User');
+const User = require('./User');
 
 // @desc  Master Admin creates an Admin account
 // @route POST /api/admin/create-admin
