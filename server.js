@@ -6,17 +6,17 @@ const morgan = require('morgan');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 
-const connectDB = require('db');
-const { notFound, errorHandler } = require('.errorHandler');
+const connectDB = require('db.js');
+const { notFound, errorHandler } = require('errorHandler.js');
 
-const authRoutes = require('authRoutes');
-const adminRoutes = require('adminRoutes');
-const courseRoutes = require('courseRoutes');
-const topicRoutes = require('topicRoutes');
-const questionRoutes = require('questionRoutes');
-const examRoutes = require('examRoutes');
-const libraryRoutes = require('libraryRoutes');
-const userRoutes = require('userRoutes');
+const authRoutes = require('authRoutes.js');
+const adminRoutes = require('adminRoutes.js');
+const courseRoutes = require('courseRoutes.js');
+const topicRoutes = require('topicRoutes.js');
+const questionRoutes = require('questionRoutes.js');
+const examRoutes = require('examRoutes.js');
+const libraryRoutes = require('libraryRoutes.js');
+const userRoutes = require('userRoutes.js');
 
 connectDB();
 
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));
 
 // Basic rate limiting on auth routes to slow down brute-force login attempts
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 50 });
-app.use('/api/auth', authLimiter);
+app.use('/api/auth.js', authLimiter);
 
 // --- Static file serving for uploaded images & PDFs ---
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
