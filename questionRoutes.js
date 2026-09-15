@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { protect, authorize } = require('.auth');
-const { uploadQuestionImage } = require('.upload');
+const { protect, authorize } = require('./auth');
+const { uploadQuestionImage } = require('./upload');
 const {
   createQuestion, bulkCreateQuestions, getQuestions, updateQuestion, deleteQuestion,
-} = require('.questionController');
+} = require('./questionController');
 
 router.use(protect);
 
