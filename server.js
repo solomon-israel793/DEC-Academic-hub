@@ -6,17 +6,17 @@ const morgan = require('morgan');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 
-const connectDB = require('db.js');
-const { notFound, errorHandler } = require('errorHandler.js');
+const connectDB = require('./db');
+const { notFound, errorHandler } = require('./errorHandler');
 
-const authRoutes = require('authRoutes.js');
-const adminRoutes = require('adminRoutes.js');
-const courseRoutes = require('courseRoutes.js');
-const topicRoutes = require('topicRoutes.js');
-const questionRoutes = require('questionRoutes.js');
-const examRoutes = require('examRoutes.js');
-const libraryRoutes = require('libraryRoutes.js');
-const userRoutes = require('userRoutes.js');
+const authRoutes = require('./authRoutes');
+const adminRoutes = require('./adminRoutes');
+const courseRoutes = require('./courseRoutes');
+const topicRoutes = require('./topicRoutes');
+const questionRoutes = require('./questionRoutes');
+const examRoutes = require('./examRoutes');
+const libraryRoutes = require('./libraryRoutes');
+const userRoutes = require('./userRoutes');
 
 connectDB();
 
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));
 
 // Basic rate limiting on auth routes to slow down brute-force login attempts
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 50 });
-app.use('/api/auth.js', authLimiter);
+app.use('/api/auth', authLimiter);
 
 // --- Static file serving for uploaded images & PDFs ---
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -56,7 +56,7 @@ app.use('/api/exams', examRoutes);
 app.use('/api/library', libraryRoutes);
 app.use('/api/users', userRoutes);
 
-app.get('/api/health', (req, res) => res.json({ success: true, message: 'Dec Academic Hub API is running.' }));
+app.get('/api/health', (req, res) => res.json({ success: true, message: 'Dec Academic CBT Hub API is running.' }));
 
 // Any non-API route falls back to the frontend app (so phone browsers/PWA routing works)
 app.get('*', (req, res, next) => {
