@@ -3,8 +3,8 @@
 // Safe to run multiple times - it won't create a second one.
 require('dotenv').config();
 const mongoose = require('mongoose');
-const connectDB = require('.db');
-const User = require('.User');
+const connectDB = require('./db');
+const User = require('./User');
 
 (async () => {
   await connectDB();
@@ -30,7 +30,7 @@ const User = require('.User');
     role: 'masterAdmin',
   });
 
-  console.log(`✅ MasterAdmin created: ${masterAdmin.email}`);
+  console.log(`✅ Master Admin created: ${masterAdmin.email}`);
   console.log('   Log in with this email + the password you set in .env, then change it from the app.');
   process.exit(0);
 })();
