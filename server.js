@@ -26,13 +26,15 @@ if (!fs.existsSync(uploadsDir)) {
   try { fs.mkdirSync(uploadsDir, { recursive: true }); } catch (e) { console.warn('⚠️ Could not create uploads folder'); }
 }
 
-// --- DATABASE CONNECTION with error handling ---
+// --- DATABASE CONNECTION ---
 connectDB().catch(err => {
   console.error('❌ Database connection failed on startup:', err.message);
-  // Don't exit — let retry keep trying instead
 });
 
 const app = express();
+
+// ✅ FIX 1: TRUST RENDER'S PROXY — THIS SOLVES THE X-FORWARDED-FOR ERROR
+app.set('trust proxy', 1);
 
 // --- Security & basics ---
 app.use(helmet({
@@ -44,13 +46,14 @@ app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));
 
-// --- Rate limiting ---
+// ✅ FIX 2: UPDATED RATE LIMITER — works properly with proxies
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { success: false, message: 'Too many requests — try again later' }
+  message: { success: false, message: 'Too many requests — try again later' },
+  keyGenerator: (req) => req.ip
 });
 app.use('/api/auth', authLimiter);
 
@@ -103,7 +106,7 @@ const server = app.listen(PORT, () => {
   console.log(`🚀 Dec Academic CBT Hub API running on port ${PORT} (${process.env.NODE_ENV || 'development'})`);
 });
 
-// --- GRACEFUL SHUTDOWN — prevent crashes on server restart ---
+// --- GRACEFUL SHUTDOWN ---
 process.on('SIGTERM', () => {
   console.log('📤 SIGTERM received — shutting down gracefully');
   server.close(() => {
@@ -117,15 +120,13 @@ process.on('SIGINT', () => {
   server.close(() => process.exit(0));
 });
 
-// --- Catch unhandled errors to prevent full crash ---
+// --- Catch unhandled errors ---
 process.on('uncaughtException', (err) => {
   console.error('❌ UNCAUGHT EXCEPTION:', err.message);
-  // Don't exit — keep server running
 });
 
 process.on('unhandledRejection', (err) => {
   console.error('❌ UNHANDLED REJECTION:', err.message);
-  // Don't exit — keep server running
 });
 
 module.exports = app;
