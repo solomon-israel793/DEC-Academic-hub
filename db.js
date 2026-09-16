@@ -1,14 +1,14 @@
+// db.js — FIXED VERSION
 const mongoose = require('mongoose');
 
-// Connects to MongoDB using the URI from .env
-// Works with both a local MongoDB and a free MongoDB Atlas cloud cluster
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log(`✅ MongoDB connected: ${conn.connection.host}`);
+    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    return conn;
   } catch (error) {
-    console.error(`❌ MongoDB connection error: ${error.message}`);
-    process.exit(1);
+    console.error(`❌ MongoDB Connection Error: ${error.message}`);
+    throw error; // Let the caller handle it
   }
 };
 
